@@ -1,66 +1,78 @@
-## Foundry
+# Calc Contract Learning Project
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This is a learning project that implements a simple calculator contract using Solidity. The project demonstrates various concepts including:
+- Custom value types using `type` in Solidity
+- Basic arithmetic operations
+- Event emissions
+- State management
+- Testing with both Foundry and Hardhat
 
-Foundry consists of:
+## Project Structure
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
-
-## Documentation
-
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
-
-```shell
-$ forge build
+The project follows a hybrid structure that works with both Foundry and Hardhat:
+```
+├── src/           # Solidity source files
+│   ├── Calc.sol   # Main calculator contract
+│   └── CalcParamLib.sol  # Library for calcParam type
+├── test/          # Test files
+│   ├── Calc.t.sol # Foundry tests
+│   └── Calc.t.js  # Hardhat tests
+├── script/        # Deployment scripts
+│   └── deploy-arbitrum-sepolia.js
+└── foundry.toml   # Foundry configuration
 ```
 
-### Test
+## Features
 
-```shell
-$ forge test
+- **Custom Value Type**: Uses `calcParam` type for calculations
+- **Basic Operations**: Addition, subtraction, multiplication, and division
+- **Error Handling**: Division by zero protection
+- **Event Tracking**: Emits events for all operations
+- **Result Storage**: Keeps track of the latest result per address
+
+## Setup
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Create a `.env` file in the project root with the following variables:
+   ```
+   PRIVATE_KEY=your_private_key_here
+   ARBISCAN_API_KEY=your_arbiscan_api_key_here
+   ```
+
+## Testing
+
+### Hardhat Tests
+```bash
+npx hardhat test
 ```
 
-### Format
-
-```shell
-$ forge fmt
+### Foundry Tests
+```bash
+forge test
 ```
 
-### Gas Snapshots
+## Deployment
 
-```shell
-$ forge snapshot
-```
+The project includes deployment scripts for the Arbitrum Sepolia testnet:
 
-### Anvil
+1. Deploy the contract:
+   ```bash
+   npx hardhat run script/deploy-arbitrum-sepolia.js --network arbitrumSepolia
+   ```
 
-```shell
-$ anvil
-```
+2. Verify the contract on Arbiscan:
+   ```bash
+   npx hardhat verify --network arbitrumSepolia <deployed_contract_address>
+   ```
 
-### Deploy
+## Development Tools
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+- **Hardhat**: Main development framework
+- **Foundry**: Used for Solidity testing
+- **@nomicfoundation/hardhat-foundry**: Plugin to integrate Hardhat with Foundry's project structure
+- **Arbitrum Sepolia**: Test network for deployment

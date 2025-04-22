@@ -5,7 +5,7 @@ import "./CalcParamLib.sol";
 
 contract Calc {
     event CalcResult(string operation, calcParam result);
-    
+
     mapping(address => calcParam) public latestResults;
 
     function add(calcParam x, calcParam y) public returns (calcParam) {
@@ -39,4 +39,4 @@ contract Calc {
     function getLatestResult() public view returns (calcParam) {
         return latestResults[msg.sender];
     }
-} 
+}

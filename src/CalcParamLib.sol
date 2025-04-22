@@ -19,4 +19,4 @@ function divOp(calcParam x, calcParam y) pure returns (calcParam) {
     return calcParam.wrap(calcParam.unwrap(x) / calcParam.unwrap(y));
 }
 
-using {addOp as +, subOp as -, mulOp as *, divOp as /} for calcParam global; 
+using {addOp as +, subOp as -, mulOp as *, divOp as / } for calcParam global;

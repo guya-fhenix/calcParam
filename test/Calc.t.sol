@@ -6,7 +6,7 @@ import {Calc, calcParam} from "../src/Calc.sol";
 
 contract CalcTest is Test {
     Calc public calc;
-    
+
     function setUp() public {
         calc = new Calc();
     }
@@ -57,9 +57,9 @@ contract CalcTest is Test {
     function testEventEmission() public {
         calcParam x = calcParam.wrap(5);
         calcParam y = calcParam.wrap(3);
-        
+
         vm.expectEmit(true, true, true, true);
         emit Calc.CalcResult("Addition", calcParam.wrap(8));
         calc.add(x, y);
     }
-} 
+}

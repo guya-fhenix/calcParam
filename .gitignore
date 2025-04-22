@@ -2,6 +2,9 @@
 cache/
 out/
 bin/
+node_modules
+artifacts/
+cache_hardhat/
 
 # Ignores development broadcast logs
 !/broadcast
